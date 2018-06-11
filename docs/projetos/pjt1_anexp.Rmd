@@ -1,0 +1,92 @@
+---
+title: Projeto 1 - Analise exploratória
+author: Gabriela de Paula Gonzalez
+date: 11 de junho de 2018
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Setup
+Importando libs.
+
+```{r libs, eval=FALSE}
+library(readr)
+library(dplyr)
+library(tidyverse)
+
+```
+
+## Lendo os dados
+Leitura de dados, análsie das colunas e escolha dos parâmetros a serem analisados.
+
+```{r read}
+df <- read.csv("datap1.csv")
+df2 <- df[,c("NU_IDADE", "SG_UF_RESIDENCIA", "TP_ESCOLA", "NU_NOTA_CN", "NU_NOTA_CH", "NU_NOTA_LC", "NU_NOTA_MT", "Q006", "TP_LINGUA", "TP_PRESENCA_CN", "TP_PRESENCA_LC")]
+```
+
+### **Dicionário de variáveis**  
+
+###### **NU_IDADE**
+Idade do participante
+
+###### **SG_UF_RESIDENCIA**
+Abreviação do estado de residência
+
+###### **TP_ESCOLA**
+Tipo da escola no ensino médio.
+1	- Não Respondeu
+2	- Pública
+3	- Privada
+4	- Exterior
+
+###### **NU_NOTA_CN**
+Nota da prova de Ciencias Naturais
+
+###### **NU_NOTA_CH**
+Nota na prova de ciências Humanas
+
+###### **NU_NOTA_LC**
+Nota da prova de Linguas e Códigos
+
+###### **NU_NOTA_MT**
+Nota da prova de Matemática
+
+###### **Q006**
+Renda mensal de família (Soma da própria renda com a dos familiares)  
+A -	Nenhuma renda.  
+B	- Até R$ 880,00.  
+C	- De R$ 880,01 até R$ 1.320,00.  
+D	- D	De R$ 1.320,01 até R$ 1.760,00.  
+E	- D	De R$ 1.760,01 até R$ 2.200,00.  
+F	- D	De R$ 2.200,01 até R$ 2.640,00.  
+G	- D	De R$ 2.640,01 até R$ 3.520,00.  
+H	- D	De R$ 3.520,01 até R$ 4.400,00.  
+I	- D	De R$ 4.400,01 até R$ 5.280,00.  
+J	- D	De R$ 5.280,01 até R$ 6.160,00.  
+K	- D	De R$ 6.160,01 até R$ 7.040,00.  
+L	- D	De R$ 7.040,01 até R$ 7.920,00.  
+M	- D	De R$ 7.920,01 até R$ 8.800,00.  
+N	- D	De R$ 8.800,01 até R$ 10.560,00.  
+O	- D	De R$ 10.560,01 até R$ 13.200,00.  
+P	- D	De R$ 13.200,01 até R$ 17.600,00.  
+Q	- D	Mais de R$ 17.600,00.  
+
+## Summary
+```{r summary}
+summary(df2)
+```
+## Ajustes datatype
+```{r dtype}
+df2$TP_ESCOLA <- as.factor(df2$TP_ESCOLA)
+df2$TP_LINGUA <- as.factor(df2$TP_LINGUA)
+df2$TP_PRESENCA_CN <- as.factor(df2$TP_PRESENCA_CN)
+df2$TP_PRESENCA_LC <- as.factor(df2$TP_PRESENCA_LC)
+summary(df2)
+```
+
+
+
+
