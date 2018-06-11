@@ -20,14 +20,14 @@ Essa página apresenta um resumo dos projetos realizado na disciplina **"Anális
 
 ## Projeto 1
 
-* Título: Análise Exploratória de Dados
+* Título: Análise Exploratória de Dados ENEM
 
 ### Descrição
-Esse projeto tem como objetivo realizar uma análise exploratória no dados relacionados aos passageiros do titanic.
+Esse projeto tem como objetivo realizar uma análise exploratória no dados relacionados aos dados do ENEM de 2016. O dataset foi retirado de um desafio realizado pela [Code Nation](<https://app.codenation.com.br/acceleration/data-science>). Assim, os dados representam apenas uma amostra dos participantes da prova real.
 
 ### Relatório do Projeto
 
-Link no [meu Github](<https://github.com/gabrielapgonzalez>) *Pages*: [Projeto 1](projetos/projeto1.html)
+Link no [meu Github](<https://github.com/gabrielapgonzalez>) *Pages*: [Projeto 1](projetos/pjt1_anexp.html)
 
 ***
 
