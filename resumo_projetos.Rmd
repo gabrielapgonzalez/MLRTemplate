@@ -1,6 +1,6 @@
 ---
 title: "Resumo dos projetos"
-author: "Nome do Aluno"
+author: "Gabriela de Paula Gonzalez"
 date: "5 de abril de 2018"
 output: 
   html_document:
@@ -21,14 +21,13 @@ Essa página apresenta um resumo dos projetos realizado na disciplina **"Anális
 ## Projeto 1
 
 * Título: Análise Exploratória de Dados
-* Data:
 
 ### Descrição
-Esse projeto tem como objetivo realizar uma análise exploratória no dados do .....
+Esse projeto tem como objetivo realizar uma análise exploratória no dados relacionados aos passageiros do titanic.
 
 ### Relatório do Projeto
 
-Link no [meu Github](<https://github.com/Efsilvaa>) *Pages*: [Projeto 1](projetos/projeto1.html)
+Link no [meu Github](<https://github.com/gabrielapgonzalez>) *Pages*: [Projeto 1](projetos/projeto1.html)
 
 ***
 
