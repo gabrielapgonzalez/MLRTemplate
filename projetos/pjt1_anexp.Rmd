@@ -86,7 +86,36 @@ df2$TP_PRESENCA_CN <- as.factor(df2$TP_PRESENCA_CN)
 df2$TP_PRESENCA_LC <- as.factor(df2$TP_PRESENCA_LC)
 summary(df2)
 ```
+## Summary
+```{r hmat}
+hmat <- hist(df2$NU_NOTA_MT, breaks=50, col="blue", xlab="Nota de Matemática", 
+  	main="Distribuição de notas de matemática")
+```
+```{r hcn}
+hcn <- hist(df2$NU_NOTA_CN, breaks=50, col="red", xlab="Nota de Ciências Naturais", main="Distribuição de notas de ciências naturais")
+```
 
+```{r hlc}
+hlc <- hist(df2$NU_NOTA_LC, breaks=50, col="yellow", xlab="Nota de Linguagem", 
+  	main="Distribuição de notas de liguagem")
+```
 
+```{r hch}
+hch <- hist(df2$NU_NOTA_CH, breaks=50, col="green", xlab="Nota de Ciências Humanas", 
+  	main="Distribuição de notas de ciências humanas")
+```
 
+```{r uf}
+boxplot(NU_NOTA_MT~SG_UF_RESIDENCIA,data=df2, main="Média nota MT por UF", 
+  	xlab="UF", ylab="Nota de matemática", col = "blue")
+```
 
+```{r tpescola}
+boxplot(NU_NOTA_MT~TP_ESCOLA,data=df2, main="Média nota MT por tipo de escola", 
+  	xlab="Tipo de escola", ylab="Nota de matemática", col = "red")
+```
+
+```{r renda}
+boxplot(NU_NOTA_MT~Q006,data=df2, main="Média nota MT por renda", 
+  	xlab="Faixa de renda", ylab="Nota de matemática", col = "yellow")
+```
