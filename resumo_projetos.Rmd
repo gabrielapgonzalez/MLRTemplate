@@ -34,11 +34,64 @@ Link no [meu Github](<https://github.com/gabrielapgonzalez>) *Pages*: [Projeto 1
 ## Projeto 2
 
 * Título: Regressão linear
-* Data:
 
 ### Descrição
-Esse projeto tem como objetivo realizar a previsão de ... usando um modelo de regressão linear .....
+Projeto com objetivo de prever o preço de uma casa, principalmente pela variável de área.
 
 ### Relatório do Projeto
 
-Link no [meu Github](<https://github.com/Efsilvaa>) *Pages*: [Projeto 2](projetos/projeto1.html)
+Link no [meu Github](<https://github.com/gabrielapgonzalez>) *Pages*: [Projeto 2](projetos/pjt2_reg.html)
+
+***
+
+## Projeto 3
+
+* Título: Regressão Múltipla
+
+### Descrição
+Projeto com objetivo de prever a Demanda por tickets de uma cia aérea considerando dia da semana, mês e se é feriado ou não.
+
+### Relatório do Projeto
+
+Link no [meu Github](<https://github.com/gabrielapgonzalez>) *Pages*: [Projeto 3](projetos/pjt3_regm.html)
+
+
+***
+
+## Projeto 4
+
+* Título: Decision Tree
+
+### Descrição
+Projeto com objetivo de prever características de recém nascidos utilizando decision tree.
+
+### Relatório do Projeto
+
+Link no [meu Github](<https://github.com/gabrielapgonzalez>) *Pages*: [Projeto 3](projetos/pjt4_dtree.html)
+
+***
+
+## Projeto 5
+
+* Título: Regressão Logística
+
+### Descrição
+Projeto com objetivo de prever características de recém nascidos utilizando Regressão Logística.
+
+### Relatório do Projeto
+
+Link no [meu Github](<https://github.com/gabrielapgonzalez>) *Pages*: [Projeto 3](projetos/pjt5_rlog.html)
+
+
+***
+
+## Projeto 6
+
+* Título: KNN
+
+### Descrição
+Projeto com objetivo de prever região do vinho utilizando KNN.
+
+### Relatório do Projeto
+
+Link no [meu Github](<https://github.com/gabrielapgonzalez>) *Pages*: [Projeto 3](projetos/pjt6_knn.html)
