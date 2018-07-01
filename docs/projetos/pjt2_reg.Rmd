@@ -1,0 +1,83 @@
+---
+title: Projeto 2 - Regressão Linear
+author: Gabriela de Paula Gonzalez
+date: 11 de junho de 2018
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Setup
+Importando libs.
+
+```{r libs, eval=FALSE}
+library(readr)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(reshape2)
+```
+
+## Lendo os dados
+Leitura de dados, análsie das colunas e escolha dos parâmetros a serem analisados.
+
+```{r read}
+df <- read.csv("datap2.csv")
+head(df)
+```
+
+### **Renomear colunas**  
+
+
+```{r colnames}
+colnames(df)[2] = "area"
+colnames(df)[3] = "garagem"
+colnames(df)[4] = "quartos"
+colnames(df)[5] = "preco"
+df$Obs <- NULL
+head(df)
+```
+
+```{r sumary}
+summary(df)
+```
+###### **Analisando correnação dos dados**
+
+```{r cor}
+library(reshape2)
+library(ggplot2)
+cormat <- cor(df)
+cormat
+melted_cormat <- melt(cormat)
+ggplot(data = melted_cormat, aes(x=Var1, y=Var2, fill=value)) + 
+  geom_tile()
+```
+
+###### **Regressão Simples**
+
+```{r reg}
+library(ggplot2)
+hr_lmarea <- lm(data = df, preco ~ area)
+plot(df$area,df$preco)
+abline(hr_lmarea$coeff)
+hr_lmgar <- lm(data = df, preco ~ garagem)
+plot(df$area,df$garagem)
+abline(hr_lmgar$coeff)
+hr_lmqt <- lm(data = df, preco ~ quartos)
+plot(df$area,df$quartos)
+abline(hr_lmqt$coeff)
+```
+
+###### **Regressão polinomial quadrática**
+
+```{r regpol}
+library(ggplot2)
+g <- ggplot(data = df,aes(x = area,y=preco))
+g <- g +  geom_point() +
+     labs( title = "Preço x Área",
+           y = "´Preço",
+           x = "Área" )
+g + stat_smooth(method = lm, se = FALSE, formula = y ~ poly(x,2, raw=TRUE), colour="Red")
+```

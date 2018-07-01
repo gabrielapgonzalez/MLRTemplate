@@ -1,0 +1,47 @@
+---
+title: "KNN"
+author: "Gabriela de Paula Gonzalez"
+date: "12 de junho de 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+##Carregando Bibliotecas
+```{r}
+#Carregando Libraries
+library(ggplot2)
+library(caret)
+```
+##Lendo dados
+```{r}
+load("wine_data.Rdata")
+dfwine <- wine_df
+dfwine$V1 <- as.factor(dfwine$V1)
+dfwine$V6 <- as.factor(dfwine$V1)
+summary(dfwine)
+```
+
+##Dividindo os dados em Treinamento e Test
+```{r}
+set.seed(300)
+indiceTrain <- createDataPartition(y = dfwine$V1,p = 0.75,list = FALSE)
+train <- dfwine[indiceTrain,]
+test <- dfwine[-indiceTrain,]
+```
+
+```{r}
+set.seed(200)
+ctrl <- trainControl(method = "repeatedcv",repeats = 3) 
+knn <- train(data=train, V1 ~ V2 + V3 + V4 + V5 + V6 + V7 + V8 + V9 +V10 + V11 + V12 + V13 + V14, method="knn", trControl = ctrl,tuneLength = 40)
+
+knn
+```
+
+```{r}
+prediction <- predict(knn,newdata=test,type='raw')
+t <- table(prediction,test$V1)
+t
+prop.table(t)
+```

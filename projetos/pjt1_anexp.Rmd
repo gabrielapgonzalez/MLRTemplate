@@ -16,7 +16,8 @@ Importando libs.
 library(readr)
 library(dplyr)
 library(tidyverse)
-
+library(ggplot2)
+library(reshape2)
 ```
 
 ## Lendo os dados
@@ -118,4 +119,15 @@ boxplot(NU_NOTA_MT~TP_ESCOLA,data=df2, main="Média nota MT por tipo de escola",
 ```{r renda}
 boxplot(NU_NOTA_MT~Q006,data=df2, main="Média nota MT por renda", 
   	xlab="Faixa de renda", ylab="Nota de matemática", col = "yellow")
+```
+
+```{r cor}
+library(reshape2)
+library(ggplot2)
+df2 <- na.omit(df2)
+dfcor <- df2[,c("NU_IDADE", "NU_NOTA_CN", "NU_NOTA_CH", "NU_NOTA_LC", "NU_NOTA_MT")]
+cormat <- cor(dfcor)
+melted_cormat <- melt(cormat)
+ggplot(data = melted_cormat, aes(x=Var1, y=Var2, fill=value)) + 
+  geom_tile()
 ```

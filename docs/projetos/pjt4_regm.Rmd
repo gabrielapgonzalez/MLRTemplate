@@ -1,0 +1,92 @@
+---
+title: Projeto 3 - Regressão Múltipla
+author: Gabriela de Paula Gonzalez
+Data: 11 de junho de 2018
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Setup
+Importando libs.
+
+```{r libs, eval=FALSE}
+library(readr)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(reshape2)
+```
+
+## Lendo os dados
+Leitura de dados, análsie das colunas e escolha dos parâmetros a serem analisados.
+
+```{r read}
+library(readxl)
+df <- read_excel("datap3.xlsx")
+head(df)
+```
+
+
+
+
+```{r dtype}
+df$Data <- as.Date(df$Data)
+df$Demanda <- as.integer(df$Demanda)
+summary(df)
+```
+
+```{r plot}
+library(ggplot2)
+g <- ggplot(df, aes(x=Data,y=Demanda)) +
+  geom_point() +
+  geom_line()
+g
+```
+###### **Tratando Feriado**
+
+```{r Feriado}
+df$Feriado <- "Não"
+df$Feriado[df$Data==as.Date('2006-03-25')] <- "Sim"
+df$Feriado[df$Data==as.Date('2006-03-27')] <- "Sim"
+df$Feriado[df$Data==as.Date('2006-04-21')] <- "Sim"
+df$Feriado[df$Data==as.Date('2006-05-01')] <- "Sim"
+df$Feriado[df$Data==as.Date('2006-05-26')] <- "Sim"
+df$Feriado[df$Data==as.Date('2006-09-07')] <- "Sim"
+df$Feriado[df$Data==as.Date('2006-10-12')] <- "Sim"
+df$Feriado[df$Data==as.Date('2006-11-02')] <- "Sim"
+df$Feriado[df$Data==as.Date('2006-11-15')] <- "Sim"
+df$Feriado[df$Data==as.Date('2006-12-24')] <- "Sim"
+df$Feriado <- as.factor(df$Feriado)
+summary(df)
+```
+
+
+```{r mwd}
+df$Mes <- as.factor(months(df$Data))
+df$DiaSem <- as.factor(weekdays(df$Data))
+summary(df)
+```
+
+```{r reg}
+library(lattice)
+library(tidyverse)
+tarifa.full <- 221
+tarifa.low <- 18
+valor.critico <- (tarifa.full-tarifa.low)/tarifa.full
+
+mean_holidays_normal <- df %>%
+  group_by(Feriado) %>%
+  mutate(media.N = mean(Demanda),
+         sd.N = sd(Demanda),
+         protection_level_4 = round(qnorm(p=valor.critico, mean = media.N, sd= sd.N)))
+
+summary(df)
+regressao <- lm(data=df, Demanda ~ DiaSem:Mes:Feriado)
+
+plot(regressao)
+```
+
+```

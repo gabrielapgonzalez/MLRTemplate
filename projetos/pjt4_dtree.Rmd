@@ -1,0 +1,77 @@
+---
+title: Projeto 4 - Árvore de Decisão
+author: Gabriela de Paula Gonzalez
+Data: 11 de junho de 2018
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Setup
+Importando libs.
+
+```{r libs}
+library(rpart)
+library(rpart.plot)
+library(RColorBrewer)
+library(rattle)
+```
+
+## Lendo os dados
+Leitura de dados, análsie das colunas e escolha dos parâmetros a serem analisados.
+
+```{r read}
+df <- read.csv("datap4.csv")
+df$low <- as.factor(df$low)
+df$race <- as.factor(df$race)
+df$smoke <- as.factor(df$smoke)
+df$ptl <- as.factor(df$ptl)
+df$ht <- as.factor(df$ht)
+df$ui <- as.factor(df$ftv)
+summary(df)
+```
+
+
+
+
+```{r dtype}
+set.seed(123)
+
+train.index <- sample((nrow(df)),0.7*nrow(df))
+
+train <- df[train.index,]
+test <- df[-train.index,]
+```
+
+```{r mytree1}
+mytree <- rpart(low ~ age + lwt + race + smoke + ptl + ht + ui + ftv, data= train, method = "class")
+fancyRpartPlot(mytree)
+```
+
+```{r testm1}
+prediction <- predict(mytree, test, type = "class")
+prop.table((table(prediction, test$low)))
+```
+
+
+```{r model2}
+mytree2 <- rpart(low ~ age + lwt + race + smoke + ptl + ht + ui + ftv, data= train, method = "class", minsplit = 2, minbucket = 1)
+fancyRpartPlot(mytree2)
+```
+
+```{r restmodel2}
+prediction <- predict(mytree2, test, type = "class")
+prop.table((table(prediction, test$low)))
+```
+
+
+
+```{r model3}
+mytree3 <- rpart(low ~ age + lwt + race + smoke + ptl + ht + ui + ftv, data= train, method = "class", minsplit = 5, minbucket = 1)
+fancyRpartPlot(mytree2)
+prediction <- predict(mytree3, test, type = "class")
+prop.table((table(prediction, test$low)))
+
+```

@@ -1,0 +1,44 @@
+---
+title: "KNN"
+author: "Gabriela de Paula Gonzalez"
+date: "12 de junho de 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+##Carregando Bibliotecas
+```{r}
+#Carregando Libraries
+library(ggplot2)
+library(caret)
+```
+##Lendo dados
+```{r}
+load("wine_data.Rdata")
+dfwine <- wine_df
+dfwine$V1 <- as.factor(dfwine$V1)
+dfwine$V6 <- as.factor(dfwine$V1)
+summary(dfwine)
+```
+
+##Dividindo os dados em Treinamento e Test
+```{r}
+set.seed(300)
+indiceTrain <- createDataPartition(y = dfwine$V1,p = 0.75,list = FALSE)
+train <- dfwine[indiceTrain,]
+test <- dfwine[-indiceTrain,]
+```
+
+##Checando a distribuição dos dados de treinamento e teste
+```{r}
+dfwine$grupo = "Treinamento"
+dfwine$grupo[-indiceTrain]="Teste"  
+
+m <- ggplot(data = dfwine, aes(x=V1,fill=grupo)) 
+m + geom_histogram(stat = "count") 
+
+m <- ggplot(data = dfwine, aes(x=V1,fill=grupo)) 
+```
+

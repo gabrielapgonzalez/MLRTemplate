@@ -1,0 +1,50 @@
+---
+title: Projeto 4 - Árvore de Decisão
+author: Gabriela de Paula Gonzalez
+Data: 11 de junho de 2018
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Setup
+Importando libs.
+
+```{r libs}
+library(Amelia)
+```
+
+## Lendo os dados
+Leitura de dados, análsie das colunas e escolha dos parâmetros a serem analisados.
+
+```{r read}
+df <- read.csv("datap4.csv")
+df$low <- as.factor(df$low)
+df$race <- as.factor(df$race)
+df$smoke <- as.factor(df$smoke)
+df$ptl <- as.factor(df$ptl)
+df$ht <- as.factor(df$ht)
+df$ui <- as.factor(df$ftv)
+summary(df)
+```
+
+
+
+
+```{r dtype}
+set.seed(123)
+
+train.index <- sample((nrow(df)),0.7*nrow(df))
+
+train <- df[train.index,]
+test <- df[-train.index,]
+```
+
+```{r rlog}
+rlog <- glm(low ~ age + lwt + race + smoke + ht + ui + ftv, data = train, family = binomial(link = "logit"))
+summary(rlog)
+anova(rlog, test = "Chisq")
+
+```
